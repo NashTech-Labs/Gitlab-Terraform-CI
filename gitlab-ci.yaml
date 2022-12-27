@@ -1,0 +1,28 @@
+# Install Terraform
+install_terraform:
+  image: hashicorp/terraform:latest
+  stage: build
+  script:
+    - terraform --version
+
+# Plan the changes
+plan:
+  image: hashicorp/terraform:latest
+  stage: build
+  script:
+    - terraform init
+    - terraform plan
+
+# Apply the changes
+apply:
+  image: hashicorp/terraform:latest
+  stage: deploy
+  script:
+    - terraform apply
+
+# Destroy the infrastructure
+destroy:
+  image: hashicorp/terraform:latest
+  stage: cleanup
+  script:
+    - terraform destroy
